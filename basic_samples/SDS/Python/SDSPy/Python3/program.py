@@ -1,6 +1,6 @@
 # program.py
 #
-# Copyright (C) 2018 OSIsoft, LLC. All rights reserved.
+# Copyright (C) 2018-2019 OSIsoft, LLC. All rights reserved.
 #
 # THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
 # OSIsoft, LLC.  USE, DISCLOSURE, OR REPRODUCTION IS PROHIBITED WITHOUT
@@ -258,8 +258,8 @@ try:
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    client = SdsClient(config.get('Access', 'ApiVersion'), config.get('Access', 'Tenant'), config.get('Access', 'Address'), config.get('Credentials', 'Resource'), 
-                      config.get('Credentials', 'Authority'), config.get('Credentials', 'ClientId'), config.get('Credentials', 'ClientSecret'))
+    client = SdsClient(config.get('Access', 'ApiVersion'), config.get('Access', 'Tenant'), config.get('Access', 'Resource'), 
+                      config.get('Credentials', 'ClientId'), config.get('Credentials', 'ClientSecret'))
 
     namespaceId = config.get('Configurations', 'Namespace')
 
@@ -312,8 +312,8 @@ try:
 
     # Get the last inserted event in a stream
     print("Getting latest event")
-    wave = client.getLastValue(namespaceId, stream.Id, WaveData)
-    print(toString(wave))
+    waves = client.getLastValue(namespaceId, stream.Id, WaveData)
+    print(toString(waves[0]))
     print()
 
     # Get all the events
